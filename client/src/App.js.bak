@@ -1,0 +1,150 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var wouter_1 = require("wouter");
+var queryClient_1 = require("./lib/queryClient");
+var react_query_1 = require("@tanstack/react-query");
+var toaster_1 = require("@/components/ui/toaster");
+var use_auth_1 = require("@/hooks/use-auth");
+var use_location_1 = require("@/hooks/use-location");
+var CountryRestrictionModal_1 = require("@/components/modals/CountryRestrictionModal");
+var protected_route_1 = require("./lib/protected-route");
+// Pages
+var not_found_1 = require("@/pages/not-found");
+var auth_page_1 = require("@/pages/auth-page");
+var subscription_key_1 = require("@/pages/auth/subscription-key");
+var landing_page_1 = require("@/pages/landing-page");
+var subscription_page_1 = require("@/pages/subscription-page");
+var success_1 = require("@/pages/subscription/success");
+var error_1 = require("@/pages/subscription/error");
+var dashboard_1 = require("@/pages/student/dashboard");
+var dashboard_2 = require("@/pages/tutor/dashboard");
+var dashboard_3 = require("@/pages/mentor/dashboard");
+var dashboard_4 = require("@/pages/researcher/dashboard");
+var dashboard_fixed_1 = require("@/pages/admin/dashboard-fixed");
+var subscription_keys_1 = require("@/pages/admin/subscription-keys");
+var users_1 = require("@/pages/admin/users");
+var _id_1 = require("@/pages/admin/users/[id]");
+// Settings pages
+var settings_1 = require("@/pages/student/settings");
+var settings_2 = require("@/pages/tutor/settings");
+var settings_3 = require("@/pages/mentor/settings");
+var settings_4 = require("@/pages/researcher/settings");
+var settings_5 = require("@/pages/admin/settings");
+// Course pages
+var create_1 = require("@/pages/tutor/courses/create");
+var course_details_1 = require("@/pages/student/courses/course-details");
+var courses_1 = require("@/pages/tutor/courses");
+var reviews_1 = require("@/pages/tutor/courses/reviews");
+var _id_2 = require("@/pages/tutor/courses/[id]");
+var edit_1 = require("@/pages/tutor/courses/[id]/edit");
+var students_1 = require("@/pages/tutor/students");
+var messages_1 = require("@/pages/tutor/messages");
+var analytics_1 = require("@/pages/tutor/analytics");
+var earnings_1 = require("@/pages/tutor/earnings");
+var withdraw_1 = require("@/pages/tutor/earnings/withdraw");
+// Student pages
+var courses_2 = require("@/pages/student/courses");
+var ai_tutor_1 = require("@/pages/student/ai-tutor");
+var advanced_ai_tutor_1 = require("@/pages/student/advanced-ai-tutor");
+var library_1 = require("@/pages/student/library");
+var notes_1 = require("@/pages/student/notes");
+var progress_1 = require("@/pages/student/progress");
+var mentorship_1 = require("@/pages/student/mentorship");
+var messages_2 = require("@/pages/student/messages");
+var payments_1 = require("@/pages/student/payments");
+var focus_timer_1 = require("@/pages/student/focus-timer");
+// CV Generator pages
+var cv_generator_1 = require("@/pages/cv-generator");
+function Router() {
+    return (<wouter_1.Switch>
+      {/* Public routes */}
+      <wouter_1.Route path="/" component={landing_page_1.default}/>
+      <wouter_1.Route path="/auth" component={auth_page_1.default}/>
+      <wouter_1.Route path="/auth/subscription-key" component={subscription_key_1.default}/>
+      <wouter_1.Route path="/subscription" component={subscription_page_1.default}/>
+      <wouter_1.Route path="/subscription/success" component={success_1.default}/>
+      <wouter_1.Route path="/subscription/error" component={error_1.default}/>
+      
+      {/* Student dashboards */}
+      <protected_route_1.ProtectedRoute path="/dashboard" role="student" component={dashboard_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student" role="student" component={dashboard_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/:level" role="student" component={dashboard_1.default}/>
+      
+      {/* Other role dashboards */}
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor" role="tutor" component={dashboard_2.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/mentor" role="mentor" component={dashboard_3.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/researcher" role="researcher" component={dashboard_4.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/admin" role="admin" component={dashboard_fixed_1.default}/>
+      
+      {/* Settings routes for each role */}
+      <protected_route_1.ProtectedRoute path="/dashboard/student/settings" role="student" component={settings_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/settings" role="tutor" component={settings_2.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/mentor/settings" role="mentor" component={settings_3.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/researcher/settings" role="researcher" component={settings_4.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/admin/settings" role="admin" component={settings_5.default}/>
+      <protected_route_1.ProtectedRoute path="/admin/subscription-keys" role="admin" component={subscription_keys_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/admin/users" role="admin" component={users_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/admin/users/:id" role="admin" component={_id_1.default}/>
+      
+      {/* Tutor routes */}
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/courses" role="tutor" component={courses_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/courses/create" role="tutor" component={create_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/courses/reviews" role="tutor" component={reviews_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/students" role="tutor" component={students_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/messages" role="tutor" component={messages_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/earnings" role="tutor" component={earnings_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/earnings/withdraw" role="tutor" component={withdraw_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/analytics" role="tutor" component={analytics_1.default}/>
+      
+      {/* Tutor course detail and edit routes */}
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/courses/:id" role="tutor" component={_id_2.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/tutor/courses/:id/edit" role="tutor" component={edit_1.default}/>
+      
+      {/* Student routes */}
+      <protected_route_1.ProtectedRoute path="/dashboard/student/courses" role="student" component={courses_2.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/courses/:courseId" role="student" component={course_details_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/ai-tutor" role="student" component={ai_tutor_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/advanced-ai-tutor" role="student" component={advanced_ai_tutor_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/library" role="student" component={library_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/notes" role="student" component={notes_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/progress" role="student" component={progress_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/mentorship" role="student" component={mentorship_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/messages" role="student" component={messages_2.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/payments" role="student" component={payments_1.default}/>
+      <protected_route_1.ProtectedRoute path="/dashboard/student/focus-timer" role="student" component={focus_timer_1.default}/>
+      
+      {/* CV Generator routes - Publicly accessible */}
+      <wouter_1.Route path="/cv-generator" component={cv_generator_1.default}/>
+      <protected_route_1.ProtectedRoute path="/cv-generator/edit/:id" component={cv_generator_1.default}/>
+
+      {/* Researcher routes */}
+      <protected_route_1.ProtectedRoute path="/researcher" role="researcher" component={dashboard_4.default}/>
+      
+      {/* Research Projects routes */}
+      <protected_route_1.ProtectedRoute path="/researcher/projects" role="researcher" component={dashboard_4.default}/>
+      <protected_route_1.ProtectedRoute path="/researcher/projects/create" role="researcher" component={dashboard_4.default}/>
+      <protected_route_1.ProtectedRoute path="/researcher/projects/:id" role="researcher" component={dashboard_4.default}/>
+      <protected_route_1.ProtectedRoute path="/researcher/projects/:id/edit" role="researcher" component={dashboard_4.default}/>
+      
+      {/* Other researcher routes */}
+      <protected_route_1.ProtectedRoute path="/researcher/collaboration" role="researcher" component={dashboard_4.default}/>
+      <protected_route_1.ProtectedRoute path="/researcher/publications" role="researcher" component={dashboard_4.default}/>
+      <protected_route_1.ProtectedRoute path="/researcher/resources" role="researcher" component={dashboard_4.default}/>
+      <protected_route_1.ProtectedRoute path="/researcher/messages" role="researcher" component={dashboard_4.default}/>
+      
+      {/* Fallback to 404 */}
+      <wouter_1.Route component={not_found_1.default}/>
+    </wouter_1.Switch>);
+}
+function App() {
+    return (<react_query_1.QueryClientProvider client={queryClient_1.queryClient}>
+      <use_location_1.LocationProvider>
+        <use_auth_1.AuthProvider>
+          <Router />
+          <CountryRestrictionModal_1.CountryRestrictionModal />
+          <toaster_1.Toaster />
+        </use_auth_1.AuthProvider>
+      </use_location_1.LocationProvider>
+    </react_query_1.QueryClientProvider>);
+}
+exports.default = App;

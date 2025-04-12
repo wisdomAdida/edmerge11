@@ -1,0 +1,104 @@
+# EdMerge Platform File Directory Structure
+
+
+edmerge/
+│
+├── config/
+│   ├── database.php           # Database connection configuration
+│   ├── security.php           # Security-related configurations
+│   └── constants.php          # Global constants and configuration
+│
+├── public/
+│   ├── index.php              # Main entry point
+│   ├── assets/
+│   │   ├── css/
+│   │   │   ├── main.css       # Main styling
+│   │   │   ├── responsive.css # Responsive design
+│   │   │   └── theme.css      # Color schemes and themes
+│   │   ├── js/
+│   │   │   ├── main.js        # Core JavaScript functionality
+│   │   │   ├── ai-tutor.js    # AI Tutor interaction scripts
+│   │   │   ├── security.js    # Client-side security checks
+│   │   │   └── components.js  # Reusable UI component scripts
+│   │   └── images/
+│   │       ├── logo/
+│   │       ├── icons/
+│   │       └── backgrounds/
+│   │
+│   └── uploads/               # User-uploaded content
+│       ├── courses/
+│       ├── profiles/
+│       └── resources/
+│
+├── src/
+│   ├── Controllers/
+│   │   ├── AuthController.php         # User authentication
+│   │   ├── UserController.php         # User profile and management
+│   │   ├── CourseController.php       # Course-related operations
+│   │   ├── AITutorController.php      # AI Tutor interactions
+│   │   ├── MentorshipController.php   # Mentorship network
+│   │   ├── CareerController.php       # Job and career services
+│   │   └── PaymentController.php      # Subscription and payment handling
+│   │
+│   ├── Models/
+│   │   ├── User.php                   # User model
+│   │   ├── Course.php                 # Course model
+│   │   ├── Mentor.php                 # Mentor profile model
+│   │   ├── JobListing.php             # Job listings model
+│   │   ├── Subscription.php           # Subscription model
+│   │   └── AICounselor.php            # AI Counselor model
+│   │
+│   ├── Services/
+│   │   ├── AIService.php              # Core AI service
+│   │   ├── SecurityService.php        # Advanced security checks
+│   │   ├── EmailService.php           # Email communication
+│   │   ├── PaymentService.php         # Payment processing
+│   │   └── CacheService.php           # Caching mechanism
+│   │
+│   └── Middleware/
+│       ├── AuthMiddleware.php         # Authentication checks
+│       ├── RateLimitMiddleware.php    # Request rate limiting
+│       └── CSRFProtection.php         # CSRF token protection
+│
+├── templates/
+│   ├── layout/
+│   │   ├── header.php
+│   │   ├── footer.php
+│   │   └── navigation.php
+│   │
+│   ├── pages/
+│   │   ├── home.php
+│   │   ├── dashboard.php
+│   │   ├── courses.php
+│   │   ├── profile.php
+│   │   ├── ai-tutor.php
+│   │   ├── job-board.php
+│   │   └── mentorship.php
+│   │
+│   └── components/
+│       ├── course-card.php
+│       ├── ai-chat.php
+│       ├── job-listing.php
+│       └── mentor-profile.php
+│
+├── tests/
+│   ├── Unit/
+│   │   ├── AuthTest.php
+│   │   ├── AIServiceTest.php
+│   │   └── PaymentTest.php
+│   │
+│   └── Integration/
+│       ├── CourseIntegrationTest.php
+│       └── MentorshipTest.php
+│
+├── logs/
+│   ├── error.log
+│   ├── security.log
+│   └── access.log
+│
+├── vendor/                    # Composer dependencies
+│
+├── .htaccess                  # Apache server configuration
+├── composer.json              # Dependency management
+├── README.md                  # Project documentation
+└── LICENSE                    # Project licensing information
